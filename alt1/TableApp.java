@@ -4,6 +4,8 @@
 // - this class has both View and Controller content
 // 
 import javafx.application.Application;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 //import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -12,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 //import javafx.beans.value.*;
 import java.util.List;
+import javafx.util.Callback;
 import javafx.collections.*;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
@@ -45,25 +48,33 @@ public void init()
     // JavaFX objects in this method.
     pane = new BorderPane();
     // controller = new TableAppController(pane);
-    List<FXPerson> members = List.of(
-            new FXPerson("William", "Reed"),
-            new FXPerson("James", "Michaelson"),
-            new FXPerson("Julius", "Dean"));
+    List<Person> members = List.of(
+            new Person("William", "Reed"),
+            new Person("James", "Michaelson"),
+            new Person("Julius", "Dean"));
 
-    ObservableList<FXPerson> teamMembers = FXCollections.observableArrayList(members);
+    ObservableList<Person> teamMembers = FXCollections.observableArrayList(members);
 
     // TableView<Person> table = new TableView<>();
     // table.setItems(teamMembers);
-    TableView<FXPerson> table = new TableView<>(teamMembers);
+    TableView<Person> table = new TableView<>(teamMembers);
 
-    TableColumn<FXPerson, String> firstNameCol = new TableColumn<>("First Name");
-    // firstNameCol.setCellValueFactory(new
-    // PropertyValueFactory<>(members.get(0).firstNameProperty().getName()));
-    firstNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("firstName"));
-    TableColumn<FXPerson, String> lastNameCol = new TableColumn<>("Last Name");
-    // lastNameCol.setCellValueFactory(new
-    // PropertyValueFactory<>(members.get(0).lastNameProperty().getName()));
-    lastNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("lastName"));
+    TableColumn<Person, String> firstNameCol = new TableColumn<>("First Name");
+    firstNameCol
+            .setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Person, String> p)
+            {
+                return new ReadOnlyObjectWrapper(p.getValue().getFirstName());
+            }
+            });
+    TableColumn<Person, String> lastNameCol = new TableColumn<>("Last Name");
+    lastNameCol
+            .setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person, String>, ObservableValue<String>>() {
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Person, String> p)
+            {
+                return new ReadOnlyObjectWrapper(p.getValue().getLastName());
+            }
+            });
     table.getColumns().setAll(firstNameCol, lastNameCol);
 
     Button caseButton = new Button("Change Case");
@@ -88,7 +99,7 @@ public void start(Stage primaryStage)
     // TableAppController controller = (TableAppController) loader.getController();
     // I haven't tried using CSS yet, but the below might work
     // scene.getStylesheets().add("style.css");
-    primaryStage.setTitle("TableExample");
+    primaryStage.setTitle("TableAppr");
     primaryStage.setScene(scene);
     primaryStage.show();
     // System.out.println("FXApp:"+this);
