@@ -19,8 +19,11 @@ import javafx.event.ActionEvent;
 public class TableApp extends Application
 {
 
+public static final ModelFactory factory = new FXModelFactory();
+
 BorderPane pane = null;
 Scene scene = null;
+Roster roster = null;
 // TableAppController controller;
 // Pane gamePane;
 // Slider speedSlider;
@@ -96,6 +99,15 @@ public void start(Stage primaryStage)
 
 public static void main(String[] args)
 {
+    String rosterFilename = "roster.txt";
+    if (args.length > 0)
+        rosterFilename = args[0];
+    Roster roster = TableApp.factory.newRoster();
+    if (!roster.initialize(rosterFilename)) {
+        System.err.println("Error initializing roster");
+        return;
+    }
+    roster.dump();
     Application.launch(args);
 }
 

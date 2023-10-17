@@ -15,6 +15,10 @@ public Person(String firstName, String lastName)
     this.lastName = lastName;
 }
 
+public String toString() {
+    return firstName+" "+lastName;
+}
+
 public void capitalize()
 {
     lastName = lastName.toUpperCase();
