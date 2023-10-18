@@ -20,10 +20,11 @@ public class TableApp extends Application
 {
 
 public static final ModelFactory factory = new FXModelFactory();
+private static String rosterFilename = "roster.csv";
 
 BorderPane pane = null;
 Scene scene = null;
-Roster roster = null;
+FXRoster roster = null;
 // TableAppController controller;
 // Pane gamePane;
 // Slider speedSlider;
@@ -48,12 +49,22 @@ public void init()
     // JavaFX objects in this method.
     pane = new BorderPane();
     // controller = new TableAppController(pane);
+
     List<FXPerson> members = List.of(
             new FXPerson("William", "Reed"),
             new FXPerson("James", "Michaelson"),
             new FXPerson("Julius", "Dean"));
 
-    ObservableList<FXPerson> teamMembers = FXCollections.observableArrayList(members);
+    //ObservableList<FXPerson> teamMembers = FXCollections.observableArrayList(members);
+
+    //roster = (FXRoster) TableApp.factory.newRoster();
+    roster = new FXRoster(); // don't really need the factory here
+    if (!roster.initialize(rosterFilename)) {
+        System.err.println("Error initializing roster");
+        return; // need to exit here!
+    }
+    roster.dump();
+    ObservableList<FXPerson> teamMembers = FXCollections.observableArrayList(roster.viewRoster());
 
     // TableView<Person> table = new TableView<>();
     // table.setItems(teamMembers);
@@ -99,15 +110,8 @@ public void start(Stage primaryStage)
 
 public static void main(String[] args)
 {
-    String rosterFilename = "roster.txt";
     if (args.length > 0)
         rosterFilename = args[0];
-    Roster roster = TableApp.factory.newRoster();
-    if (!roster.initialize(rosterFilename)) {
-        System.err.println("Error initializing roster");
-        return;
-    }
-    roster.dump();
     Application.launch(args);
 }
 

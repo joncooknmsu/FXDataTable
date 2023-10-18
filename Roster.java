@@ -28,7 +28,8 @@ public boolean initialize(String filename)
     Scanner scanner;
     try {
         scanner = new Scanner(new File(filename));
-        scanner.useDelimiter("[,\\s]+");
+        //scanner.useDelimiter("[,\\s]+");
+        scanner.useDelimiter("[,\\n]");
         while (scanner.hasNext()) {
             String firstname = scanner.next();
             String lastname = scanner.next();
