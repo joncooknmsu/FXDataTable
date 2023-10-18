@@ -8,8 +8,8 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class FXPerson extends Person
 {
-public StringProperty firstNameProp;
-public StringProperty lastNameProp;
+private StringProperty firstNameProp;
+private StringProperty lastNameProp;
 
 public FXPerson(String firstName, String lastName)
 {

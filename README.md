@@ -1,5 +1,5 @@
 # FXDataTable
 
-Example of JavaFX TableView keeping the domain class Person separate from
-the viewable JavaFX data integrator FXPerson.
+Example of JavaFX TableView keeping the domain classes Person and Roster 
+separate from the viewable JavaFX data integrators FXPerson and FXRoster.
 

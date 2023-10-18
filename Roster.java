@@ -51,7 +51,7 @@ public void dump()
     }
 }
 
-public void changed()
+protected void changed()
 {
 }
 

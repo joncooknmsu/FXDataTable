@@ -19,16 +19,16 @@ import javafx.event.ActionEvent;
 public class TableApp extends Application
 {
 
-public static final ModelFactory factory = new FXModelFactory();
+static final ModelFactory factory = new FXModelFactory();
 private static String rosterFilename = "roster.csv";
+static TableApp app;
 
-BorderPane pane = null;
-Scene scene = null;
-FXRoster roster = null;
+private BorderPane pane = null;
+private Scene scene = null;
+private FXRoster roster = null;
 // TableAppController controller;
 // Pane gamePane;
 // Slider speedSlider;
-static TableApp app;
 
 // set app to last object created; this is currently not used but the JavaFX
 // runtime creates TWO TableApp objects: on the first it runs init() and
@@ -50,14 +50,17 @@ public void init()
     pane = new BorderPane();
     // controller = new TableAppController(pane);
 
-    List<FXPerson> members = List.of(
-            new FXPerson("William", "Reed"),
-            new FXPerson("James", "Michaelson"),
-            new FXPerson("Julius", "Dean"));
+    /***
+     * hardcoded list from Java API example ***
+     * List<FXPerson> members = List.of(
+     * new FXPerson("William", "Reed"),
+     * new FXPerson("James", "Michaelson"),
+     * new FXPerson("Julius", "Dean"));
+     * ObservableList<FXPerson> teamMembers =
+     * FXCollections.observableArrayList(members);
+     **/
 
-    //ObservableList<FXPerson> teamMembers = FXCollections.observableArrayList(members);
-
-    //roster = (FXRoster) TableApp.factory.newRoster();
+    // roster = (FXRoster) TableApp.factory.newRoster();
     roster = new FXRoster(); // don't really need the factory here
     if (!roster.initialize(rosterFilename)) {
         System.err.println("Error initializing roster");
