@@ -1,3 +1,4 @@
+
 //
 // JavaFX specific subclass for our Model class Person
 // - this subclass should be considered as part of the
@@ -18,11 +19,13 @@ public FXPerson(String firstName, String lastName)
     lastNameProp = new SimpleStringProperty(this, "lastName", this.lastName);
 }
 
-public StringProperty firstNameProperty() {
+public StringProperty firstNameProperty()
+{
     return firstNameProp;
 }
 
-public StringProperty lastNameProperty() {
+public StringProperty lastNameProperty()
+{
     return lastNameProp;
 }
 

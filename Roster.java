@@ -28,7 +28,7 @@ public boolean initialize(String filename)
     Scanner scanner;
     try {
         scanner = new Scanner(new File(filename));
-        //scanner.useDelimiter("[,\\s]+");
+        // scanner.useDelimiter("[,\\s]+");
         scanner.useDelimiter("[,\\n]");
         while (scanner.hasNext()) {
             String firstname = scanner.next();
@@ -46,7 +46,7 @@ public boolean initialize(String filename)
 public void dump()
 {
     System.out.println("Roster\n======");
-    for (Person p: members) {
+    for (Person p : members) {
         System.out.println("member: " + p);
     }
 }

@@ -4,7 +4,7 @@
 public class FXModelFactory implements ModelFactory
 {
 
-    public Person newPerson(String firstName, String lastName)
+public Person newPerson(String firstName, String lastName)
 {
     return new FXPerson(firstName, lastName);
 }

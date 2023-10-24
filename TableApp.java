@@ -74,10 +74,12 @@ public void init()
     TableView<FXPerson> table = new TableView<>(teamMembers);
 
     TableColumn<FXPerson, String> firstNameCol = new TableColumn<>("First Name");
+    firstNameCol.setStyle("-fx-font-size:18");
     // firstNameCol.setCellValueFactory(new
     // PropertyValueFactory<>(members.get(0).firstNameProperty().getName()));
     firstNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("firstName"));
     TableColumn<FXPerson, String> lastNameCol = new TableColumn<>("Last Name");
+    lastNameCol.setStyle("-fx-font-size:18");
     // lastNameCol.setCellValueFactory(new
     // PropertyValueFactory<>(members.get(0).lastNameProperty().getName()));
     lastNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("lastName"));

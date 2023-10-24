@@ -11,7 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+//import javafx.scene.control.cell.PropertyValueFactory;
 //import javafx.beans.value.*;
 import java.util.List;
 import javafx.util.Callback;
@@ -47,6 +47,8 @@ public void init()
     // or a Stage in this method. An application may construct other
     // JavaFX objects in this method.
     pane = new BorderPane();
+    // This font setting seems to inherit into all widgets
+    pane.setStyle("-fx-font-size: 18;");
     // controller = new TableAppController(pane);
     List<Person> members = List.of(
             new Person("William", "Reed"),
@@ -60,6 +62,7 @@ public void init()
     TableView<Person> table = new TableView<>(teamMembers);
 
     TableColumn<Person, String> firstNameCol = new TableColumn<>("First Name");
+    //firstNameCol.setStyle("-fx-font-size:18");
     firstNameCol
             .setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Person, String> p)
@@ -68,6 +71,7 @@ public void init()
             }
             });
     TableColumn<Person, String> lastNameCol = new TableColumn<>("Last Name");
+    //lastNameCol.setStyle("-fx-font-size:18");
     lastNameCol
             .setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Person, String>, ObservableValue<String>>() {
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Person, String> p)
@@ -78,6 +82,7 @@ public void init()
     table.getColumns().setAll(firstNameCol, lastNameCol);
 
     Button caseButton = new Button("Change Case");
+    //caseButton.setStyle("-fx-font-size:18");
     caseButton.setOnAction(new EventHandler<ActionEvent>() {
     public void handle(ActionEvent e)
     {
@@ -87,6 +92,7 @@ public void init()
     });
     pane.setCenter(table);
     pane.setBottom(caseButton);
+    pane.resize();
 }
 
 @Override

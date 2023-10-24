@@ -15,8 +15,9 @@ public Person(String firstName, String lastName)
     this.lastName = lastName;
 }
 
-public String toString() {
-    return firstName+" "+lastName;
+public String toString()
+{
+    return firstName + " " + lastName;
 }
 
 public void capitalize()
@@ -29,6 +30,7 @@ public void capitalize()
 // invoke this whenever object is changed; view
 // subclass will override it so that view GUI can change
 protected void changed()
-{}
+{
+}
 
 }
