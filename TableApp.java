@@ -19,16 +19,14 @@ import javafx.event.ActionEvent;
 public class TableApp extends Application
 {
 
-static final ModelFactory factory = new FXModelFactory();
 private static String rosterFilename = "roster.csv";
 static TableApp app;
 
 private BorderPane pane = null;
 private Scene scene = null;
 private FXRoster roster = null;
+// TODO: make a separate controller class
 // TableAppController controller;
-// Pane gamePane;
-// Slider speedSlider;
 
 // set app to last object created; this is currently not used but the JavaFX
 // runtime creates TWO TableApp objects: on the first it runs init() and
@@ -46,8 +44,12 @@ public void init()
     // API docs say "NOTE: This method is not called on the JavaFX
     // Application Thread. An application must not construct a Scene
     // or a Stage in this method. An application may construct other
-    // JavaFX objects in this method.
+    // JavaFX objects in this method."
+    FXModelFactory.makeFactory();
     pane = new BorderPane();
+    // This font setting seems to inherit into all widgets
+    pane.setStyle("-fx-font-size: 18;");
+    // TODO
     // controller = new TableAppController(pane);
 
     /***
@@ -60,13 +62,16 @@ public void init()
      * FXCollections.observableArrayList(members);
      **/
 
-    // roster = (FXRoster) TableApp.factory.newRoster();
-    roster = new FXRoster(); // don't really need the factory here
+    // must cast the generic Roster to an FXRoster (which it
+    // really is in this app) so that JavaFX can use the FX
+    // features in it
+    roster = (FXRoster) ModelFactory.factory().newRoster();
     if (!roster.initialize(rosterFilename)) {
         System.err.println("Error initializing roster");
         return; // need to exit here!
     }
-    roster.dump();
+    roster.dump(); // debug output
+    // Perhaps the viewRoster() method should do this for us?
     ObservableList<FXPerson> teamMembers = FXCollections.observableArrayList(roster.viewRoster());
 
     // TableView<Person> table = new TableView<>();
@@ -74,12 +79,14 @@ public void init()
     TableView<FXPerson> table = new TableView<>(teamMembers);
 
     TableColumn<FXPerson, String> firstNameCol = new TableColumn<>("First Name");
-    firstNameCol.setStyle("-fx-font-size:18");
+    firstNameCol.setMinWidth(150);
+    //firstNameCol.setStyle("-fx-font-size:18");
     // firstNameCol.setCellValueFactory(new
     // PropertyValueFactory<>(members.get(0).firstNameProperty().getName()));
     firstNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("firstName"));
     TableColumn<FXPerson, String> lastNameCol = new TableColumn<>("Last Name");
-    lastNameCol.setStyle("-fx-font-size:18");
+    lastNameCol.setMinWidth(150);
+    //lastNameCol.setStyle("-fx-font-size:18");
     // lastNameCol.setCellValueFactory(new
     // PropertyValueFactory<>(members.get(0).lastNameProperty().getName()));
     lastNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("lastName"));

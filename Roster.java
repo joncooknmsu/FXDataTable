@@ -33,7 +33,7 @@ public boolean initialize(String filename)
         while (scanner.hasNext()) {
             String firstname = scanner.next();
             String lastname = scanner.next();
-            members.add(TableApp.factory.newPerson(firstname, lastname));
+            members.add(ModelFactory.factory().newPerson(firstname, lastname));
         }
     } catch (IOException e) {
         System.err.println("I/O Error" + e);
