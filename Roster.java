@@ -33,7 +33,8 @@ public boolean initialize(String filename)
         while (scanner.hasNext()) {
             String firstname = scanner.next();
             String lastname = scanner.next();
-            members.add(ModelFactory.factory().newPerson(firstname, lastname));
+            double age = Double.parseDouble(scanner.next());
+            members.add(ModelFactory.factory().newPerson(firstname, lastname, age));
         }
     } catch (IOException e) {
         System.err.println("I/O Error" + e);

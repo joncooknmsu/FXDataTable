@@ -27,7 +27,7 @@ public static ModelFactory factory()
 
 // factory methods for the creation of model objects are below here
 
-public abstract Person newPerson(String firstName, String lastName);
+public abstract Person newPerson(String firstName, String lastName, double age);
 
 public abstract Roster newRoster();
 }

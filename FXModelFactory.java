@@ -14,9 +14,9 @@ public static void makeFactory()
     oneFactory = new FXModelFactory();
 }
 
-public Person newPerson(String firstName, String lastName)
+public Person newPerson(String firstName, String lastName, double age)
 {
-    return new FXPerson(firstName, lastName);
+    return new FXPerson(firstName, lastName, age);
 }
 
 public Roster newRoster()

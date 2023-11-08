@@ -78,20 +78,32 @@ public void init()
     // table.setItems(teamMembers);
     TableView<FXPerson> table = new TableView<>(teamMembers);
 
+    // First Name Column
     TableColumn<FXPerson, String> firstNameCol = new TableColumn<>("First Name");
     firstNameCol.setMinWidth(150);
     //firstNameCol.setStyle("-fx-font-size:18");
     // firstNameCol.setCellValueFactory(new
     // PropertyValueFactory<>(members.get(0).firstNameProperty().getName()));
     firstNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("firstName"));
+
+    // Last Name Column
     TableColumn<FXPerson, String> lastNameCol = new TableColumn<>("Last Name");
     lastNameCol.setMinWidth(150);
     //lastNameCol.setStyle("-fx-font-size:18");
     // lastNameCol.setCellValueFactory(new
     // PropertyValueFactory<>(members.get(0).lastNameProperty().getName()));
     lastNameCol.setCellValueFactory(new PropertyValueFactory<FXPerson, String>("lastName"));
-    table.getColumns().setAll(firstNameCol, lastNameCol);
 
+    // Age Column
+    TableColumn<FXPerson, Double> ageCol = new TableColumn<>("Age");
+    ageCol.setMinWidth(100);
+    //ageCol.setStyle("-fx-font-size:18");
+    ageCol.setCellValueFactory(new PropertyValueFactory<FXPerson, Double>("age"));
+
+    // Pack columns in the table
+    table.getColumns().setAll(firstNameCol, lastNameCol, ageCol);
+
+    // Make action button and attach the action (as anonymous class)
     Button caseButton = new Button("Change Case");
     caseButton.setOnAction(new EventHandler<ActionEvent>() {
     public void handle(ActionEvent e)

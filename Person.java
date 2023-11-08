@@ -8,16 +8,18 @@ public class Person
 
 protected String firstName;
 protected String lastName;
+protected double age;
 
-public Person(String firstName, String lastName)
+public Person(String firstName, String lastName, double age)
 {
     this.firstName = firstName;
     this.lastName = lastName;
+    this.age = age;
 }
 
 public String toString()
 {
-    return firstName + " " + lastName;
+    return firstName + " " + lastName + ": " + age;
 }
 
 public void capitalize()
