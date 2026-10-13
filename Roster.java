@@ -36,6 +36,7 @@ public boolean initialize(String filename)
             double age = Double.parseDouble(scanner.next());
             members.add(ModelFactory.factory().newPerson(firstname, lastname, age));
         }
+        scanner.close();
     } catch (IOException e) {
         System.err.println("I/O Error" + e);
         return false;
